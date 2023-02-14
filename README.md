@@ -2,9 +2,6 @@
 
 <div align="center">
 
-  <!-- <img src="math magician.png" alt="logo" width="140"  height="auto" /> -->
-  <!-- <br/> -->
-
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -46,7 +43,6 @@ In this project, We are using React to create a Space Travelers' Hub app.
 ### Key Features <a name="key-features"></a>
 
 - Created a dev Branch
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
