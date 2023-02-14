@@ -6,38 +6,32 @@
   box-sizing: border-box;
 }
 
-.logo
-{
+.logo {
   width: 100px;
   height: 100px;
   background-color: #f2f2f2;
   border-radius: 50%;
-
 }
-.header
-{
+
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo-container
-{
+.logo-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.nav ul
-{
+
+.nav ul {
   display: flex;
   gap: 10px;
   list-style: none;
-
- 
 }
 
-.nav ul li a
-{
+.nav ul li a {
   text-decoration: none;
   color: #000;
   font-size: 20px;
@@ -46,4 +40,5 @@
   margin-top: 10px;
   padding: 10px;
 }
+
 /* navigation */
