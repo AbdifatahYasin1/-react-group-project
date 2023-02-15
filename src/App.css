@@ -39,11 +39,11 @@
   height: 50px;
   margin: 0 10px;
 }
-.active{
 
+.active {
   border-bottom: 2px solid #2b2828;
 }
-.inactive
-{
+
+.inactive {
   border-bottom: 2px solid transparent;
 }
