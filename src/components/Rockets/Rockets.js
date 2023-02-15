@@ -24,6 +24,8 @@ const Rockets = () => {
           description={rocket.description}
           name={rocket.name}
           image={rocket.flickr_images[0]}
+          reserved={rocket.reserved}
+          id={rocket.id}
         />
       ))}
     </div>
