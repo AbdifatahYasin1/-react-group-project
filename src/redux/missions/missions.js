@@ -1,6 +1,6 @@
-const FETCH_MISSIONS = 'react-group-project/missions/FETCH_MISSIONS';
-const JOIN_MISSION = 'react-group-project/missions/JOIN_MISSION';
-const LEAVE_MISSION = 'react-group-project/missions/LEAVE_MISSION';
+const fetchMissons = 'mission/fetchMissions';
+const joinMissions = 'mission/joinMission';
+const leaveMissions = 'mission/leaveMission';
 
 const fetchMissions = () => async (dispatch) => {
   const response = await fetch('https://api.spacexdata.com/v3/missions');
@@ -15,26 +15,26 @@ const fetchMissions = () => async (dispatch) => {
     });
   });
   dispatch({
-    type: FETCH_MISSIONS,
+    type: fetchMissons,
     payload: missionsData,
   });
 };
 
 const joinMission = (mission) => ({
-  type: JOIN_MISSION,
+  type: joinMissions,
   payload: mission,
 });
 
 const leaveMission = (mission) => ({
-  type: LEAVE_MISSION,
+  type: leaveMissions,
   payload: mission,
 });
 
 const missionsReducer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_MISSIONS:
+    case fetchMissons:
       return action.payload;
-    case JOIN_MISSION:
+    case joinMissions:
       return state.map((mission) => {
         if (mission.mission_id === action.payload.mission_id) {
           return {
@@ -44,7 +44,7 @@ const missionsReducer = (state = [], action) => {
         }
         return mission;
       });
-    case LEAVE_MISSION:
+    case leaveMissions:
       return state.map((mission) => {
         if (mission.mission_id === action.payload.mission_id) {
           return {

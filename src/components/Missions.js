@@ -23,7 +23,6 @@ const Missions = () => {
 
   return (
     <div className="missions-container">
-      <h2>Missions</h2>
       <Table striped bordered hover ref={missionsRef}>
         <thead>
           <tr>
