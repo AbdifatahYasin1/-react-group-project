@@ -1,4 +1,4 @@
-/* reset */
+reset
 
 * {
   margin: 0;
@@ -37,4 +37,12 @@
   width: 100px;
   height: 100px;
   margin: 0 10px;
+}
+.active{
+
+  border-bottom: 2px solid #2b2828;
+}
+.inactive
+{
+  border-bottom: 2px solid transparent;
 }
