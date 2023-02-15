@@ -11,7 +11,7 @@ const Missions = () => {
 
   useEffect(() => {
     dispatch(fetchMissions());
-  }, []);
+  }, [dispatch]);
 
   const handleJoin = (mission) => {
     dispatch(joinMission(mission));
