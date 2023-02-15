@@ -1,59 +1,78 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import { fetchMissions, joinMission, leaveMission } from '../redux/missions/missions';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const missions = [
-  {
-    mission_id: 'Thaicom',
-    mission_name: 'Thaicom',
-    description: 'Thaicom is the name of a series of communications satellites operated from Thailand, and also the name of Thaicom Public Company Limited, which is the company that owns and operates the Thaicom satellite fleet and other telecommunication businesses in Thailand and throughout the Asia-Pacific region. The satellite projects were named Thaicom by the King of Thailand, His Majesty the King Bhumibol Adulyadej, as a symbol of the linkage between Thailand and modern communications technology.',
-    reserved: false,
-  },
-  {
-    mission_id: 'Thaicom',
-    mission_name: 'Thaicom',
-    description: 'Thaicom is the name of a series of communications satellites operated from Thailand, and also the name of Thaicom Public Company Limited, which is the company that owns and operates the Thaicom satellite fleet and other telecommunication businesses in Thailand and throughout the Asia-Pacific region. The satellite projects were named Thaicom by the King of Thailand, His Majesty the King Bhumibol Adulyadej, as a symbol of the linkage between Thailand and modern communications technology.',
-    reserved: true,
-  },
-  {
-    mission_id: 'Thaicom',
-    mission_name: 'Thaicom',
-    description: 'Thaicom is the name of a series of communications satellites operated from Thailand, and also the name of Thaicom Public Company Limited, which is the company that owns and operates the Thaicom satellite fleet and other telecommunication businesses in Thailand and throughout the Asia-Pacific region. The satellite projects were named Thaicom by the King of Thailand, His Majesty the King Bhumibol Adulyadej, as a symbol of the linkage between Thailand and modern communications technology.',
-    reserved: true,
-  },
-];
+const Missions = () => {
+  const dispatch = useDispatch();
+  const missions = useSelector((state) => state.missions);
+  const missionsRef = useRef(null);
 
-const Missions = () => (
-  <div className="container mt-3">
-    <Table striped bordered hover>
+  useEffect(() => {
+    dispatch(fetchMissions());
+  }, []);
 
-      <thead>
-        <tr>
-          <th>Mission</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        {missions.map((mission) => (
-          <tr key={mission.mission_id}>
-            <th className="col-2">{mission.mission_name}</th>
-            <td className="col-6">{mission.description}</td>
-            <td className="col-2 text-center pt-5">
-              {mission.reserved ? (<span className="bg-info text-white rounded-1 p-1">Active Member</span>)
-                : (<span className="bg-secondary text-white rounded-1 p-1">NOT A MEMBER</span>)}
-            </td>
-            <td className="col-2">
-              <button type="button" className="btn btn-light border-2 border-secondary">
-                {mission.reserved ? 'Leave Mission' : 'Join Mission'}
-              </button>
-            </td>
+  const handleJoin = (mission) => {
+    dispatch(joinMission(mission));
+  };
+
+  const handleLeave = (mission) => {
+    dispatch(leaveMission(mission));
+  };
+
+  return (
+    <div className="missions-container">
+      <h2>Missions</h2>
+      <Table striped bordered hover ref={missionsRef}>
+        <thead>
+          <tr>
+            <th>Mission</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th> </th>
           </tr>
-        ))}
-      </tbody>
+        </thead>
+        <tbody>
+          {
+           missions.map((mission) => (
+             <tr key={mission.mission_id}>
+               <td className="col-2">{mission.mission_name}</td>
+               <td className="col-6">{mission.description}</td>
+               <td className="col-2 text-center pt-5">
+                 {mission.reserved ? (<span className="bg-info text-white rounded-1 p-1">Active Member</span>)
+                   : (<span className="bg-secondary text-white rounded-1 p-1">NOT A MEMBER</span>)}
+               </td>
+               <td className="col-2 text-center pt-5">
+                 {!mission.reserved && (
+                 <button
+                   type="submit"
+                   className="btn btn-light border-2 border-secondary"
+                   onClick={() => dispatch(handleJoin(mission))}
+                 >
+                   Join Mission
 
-    </Table>
-  </div>
-);
+                 </button>
+                 )}
+                 {mission.reserved && (
+                 <button
+                   name="leaveMission"
+                   type="submit"
+                   className="btn btn-light border-2 border-danger"
+                   onClick={() => dispatch(handleLeave(mission))}
+                 >
+                   Leave Mission
+
+                 </button>
+                 )}
+               </td>
+             </tr>
+           ))
+}
+        </tbody>
+      </Table>
+    </div>
+  );
+};
 
 export default Missions;
