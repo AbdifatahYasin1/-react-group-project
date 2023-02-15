@@ -1,23 +1,24 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-} from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 
-const RESERVEROCKET = createAction('rocket/RESERVEROCKET');
-const CANCELROCKETRESERVATION = createAction('rocket/CANCELROCKETRESERVATION');
+export const reserveRocket = createAction('rocket/RESERVEROCKET', (id) => ({
+  payload: {
+    id,
+  },
+}));
+
+export const cancelRocketReservation = createAction('rocket/CANCELROCKETRESERVATION', (id) => ({
+  payload: {
+    id,
+  },
+}));
+
 const FETCHROCKETS = 'rockets/fetchRockets';
 const URL = 'https://api.spacexdata.com/v4/rockets';
 
 export const fetchRockets = createAsyncThunk(FETCHROCKETS, async () => {
   const response = await fetch(URL);
   const data = await response.json();
-  return {
-    id: data[0].id,
-    name: data[0].name,
-    type: data[0].type,
-    images: data[0].flickr_images,
-  };
+  return data;
 });
 
 const initialState = {
@@ -29,13 +30,27 @@ const rockets = createReducer(initialState, (builder) => {
     ...state,
     rockets: payload,
   }));
-  builder.addCase(RESERVEROCKET, (state, { payload }) => ({
+  builder.addCase(reserveRocket, (state, { payload }) => ({
     ...state,
-    rockets: payload,
+    rockets: state.rockets.map((rocket) => {
+      if (rocket.id !== payload.id) {
+        return rocket;
+      }
+      return {
+        ...rocket, reserved: true,
+      };
+    }),
   }));
-  builder.addCase(CANCELROCKETRESERVATION, (state, { payload }) => ({
+  builder.addCase(cancelRocketReservation, (state, { payload }) => ({
     ...state,
-    rockets: payload,
+    rockets: state.rockets.map((rocket) => {
+      if (rocket.id !== payload.id) {
+        return rocket;
+      }
+      return {
+        ...rocket, reserved: false,
+      };
+    }),
   }));
 });
 
