@@ -8,12 +8,7 @@ const URL = 'https://api.spacexdata.com/v4/rockets';
 export const fetchRockets = createAsyncThunk(FETCHROCKETS, async () => {
   const response = await fetch(URL);
   const data = await response.json();
-  return {
-    id: data[0].id,
-    name: data[0].name,
-    type: data[0].type,
-    images: data[0].flickr_images,
-  };
+  return data;
 });
 
 const initialState = {
