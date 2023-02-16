@@ -16,7 +16,22 @@ const RocketItem = ({
       <img src={image} alt="rocket" style={{ width: '250px' }} />
       <div>
         <h2>{name}</h2>
-        <p>{description}</p>
+        <p>
+          {reserved && (
+            <span
+              style={{
+                color: '#fff',
+                padding: '2px 5px',
+                backgroundColor: '#18a2b8',
+                borderRadius: '5px',
+              }}
+            >
+              Reserved
+            </span>
+
+          )}
+          {` ${description}`}
+        </p>
         {reserved ? (
           <button
             type="button"
@@ -27,7 +42,6 @@ const RocketItem = ({
               padding: '10px 15px',
               borderRadius: '5px',
               cursor: 'pointer',
-              marginTop: '20px',
             }}
             onClick={() => dispatch(cancelRocketReservation(id))}
           >
@@ -43,7 +57,6 @@ const RocketItem = ({
               padding: '10px 15px',
               borderRadius: '5px',
               cursor: 'pointer',
-              marginTop: '20px',
             }}
             onClick={() => dispatch(reserveRocket(id))}
           >
