@@ -19,8 +19,3 @@ describe('Missions', () => {
     expect(m).toMatchSnapshot();
   });
 });
-
-
-
-
-
