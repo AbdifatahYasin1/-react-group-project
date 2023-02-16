@@ -5,12 +5,12 @@ import store from '../redux/store';
 import Rockets from '../components/Rockets/Rockets';
 
 describe('testing for rockets data', () => {
-    it('test for component', () => {
-      const test = render(
-        <Provider store={store}>
-          <Rockets />
-        </Provider>,
-      );
-      expect(test).toMatchSnapshot();
-    });
+  it('test for component', () => {
+    const test = render(
+      <Provider store={store}>
+        <Rockets />
+      </Provider>,
+    );
+    expect(test).toMatchSnapshot();
   });
+});
