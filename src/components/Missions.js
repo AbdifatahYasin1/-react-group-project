@@ -10,8 +10,10 @@ const Missions = () => {
   const missionsRef = useRef(null);
 
   useEffect(() => {
-    dispatch(fetchMissions());
-  }, [dispatch]);
+    if (missions.length === 0) {
+      dispatch(fetchMissions());
+    }
+  }, [dispatch, missions]);
 
   const handleJoin = (mission) => {
     dispatch(joinMission(mission));
