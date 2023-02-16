@@ -42,7 +42,7 @@ In this project, We are using React to create a Space Travelers' Hub app.
 
 ### Key Features <a name="key-features"></a>
 
-- Created a dev Branch
+- Single Page App
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -71,14 +71,14 @@ Git should be installed on your local machine to clone it using HTTP or SSH. Oth
 
 You can clone this project by using the command below
 
-Command : git clone git@github.com:SabiMantock/bookstore.git
+Command : git clone git@github.com:AbdifatahYasin1/React-group-project.git
 
 ### Run project <a name="run-tests"></a>
 
 In the project directory, you can run:
 
 ```bash
-npm install .
+npm install
 ```
 
 to install all the packages
@@ -94,6 +94,18 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
 You may also see any lint errors in the console.
+
+### To run tests, run the following command:
+
+```
+npm run test
+```
+
+### You can deploy this project using:
+
+```
+npm run build
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +127,8 @@ You may also see any lint errors in the console.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- styling
+- Mobile view
+- Dragon feature Page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
